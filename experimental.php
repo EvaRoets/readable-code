@@ -6,7 +6,7 @@ function ordr_pz($pizzatype, $fw) {
 $type = $pizzatype;
 echo 'Creating new order... <br>';
 $toPrint = 'A ';
- $toPrint .= $pizzatype;
+$toPrint .= $pizzatype;
 $p = calc_cts($type);
 
     $address = 'unknown';
@@ -83,3 +83,9 @@ if ($do_it) {
 }
 
 make_Allhappy(true);
+
+//todo fix indentation
+//todo check clear, logical naming
+//todo check valid naming
+//todo check consistent naming (snake_case vs camelCase)
+//todo check unnecessary nesting (by adding guard clauses, inverting conditional logic, or leveraging return)
