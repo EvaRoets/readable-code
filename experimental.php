@@ -4,7 +4,6 @@ $pizzas = [
     ["name" => "marguerita", "price" => 5],
     ["name" => "golden", "price" => 100],
     ["name" => "calzone", "price" => 10],
-    ["name" => "hawai", "price" => exception],
 ];
 
 $customers = [
@@ -13,37 +12,47 @@ $customers = [
     ["name" => students, "address" => "BeCode office"],
 ];
 
-function takeOrder($pizzas, $customers){ //register who orders which products
+function takeOrder($pizzas, $customers)
+{ //register who orders which products
     $pizzaPrices = array_keys("pizzas");
     $pizzaNames = [];
     foreach ($pizzaPrices as $pizzaPrice) {
         $pizzaNames[] = $pizzas[$pizzaPrice]["name"];
     }
 
-    $custAddresses = array_keys("customers");
-    $custNames = [];
-    foreach ($custAddresses as $custAddress) {
-        $custNames[] = $customers[$custAddress]["name"];
+    if (!empty($pizzaNames[$pizza])) {
+        $pizzaName = $pizzaNames[$pizza];
+    } else {
+        $pizzaName = "unknown";
     }
-};
+}
 
 function checkOutOrder(takeOrder){ //calculate total price ordered products
     $confirmationOrder = "";
     $totalPrice = calculateCosts($pizzas);
 
     echo "Creating new order... <br>";
-    $confirmationOrder = "You ordered" .implode(", ", $pizzaNames);
-    $confirmationOrder = "The order should be sent to " .$custName. ". <br>The address:" .$custAddress. ".<br>";
-    $confirmationOrder = "The bill is €" .$totalPrice. ".<br>";
+    $confirmationOrder = "You ordered" . implode(", ", $pizzaNames);
+    $confirmationOrder = "The order should be sent to " . $custName . ". <br>The address:" . $custAddress . ".<br>";
+    $confirmationOrder = "The bill is €" . $totalPrice . ".<br>";
     $confirmationOrder = "Order finished.<br><br>";
     echo $confirmationOrder;
-};
+}
 
+function sendOrder()
+{
+    $custAddresses = array_keys("customers");
+    $custNames = [];
+    foreach ($custAddresses as $custAddress) {
+        $custNames[] = $customers[$custAddress]["name"];
+    }
 
-
-
-
-
+    if (!empty($custAddresses[$customer])) {
+        $custAddress = $custAddresses[$customer];
+    } else {
+        $custAddress = "unknown";
+    }
+}
 
 function total_price($price)
 {
