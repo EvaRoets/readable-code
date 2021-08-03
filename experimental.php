@@ -1,79 +1,66 @@
 <?php
 
-// fw = for who
-function ordr_pz($pizzatype, $fw)
-{
-
-    $type = $pizzatype;
+// customer = for who
+function pizzaOrder($pizzaType, $customer){
+    $type = $pizzaType;
     echo 'Creating new order... <br>';
     $toPrint = 'A ';
-    $toPrint .= $pizzatype;
-    $p = calc_cts($type);
+    $toPrint .= $pizzaType;
+    $price = calculateCosts($type); //delete $type because redundant
 
     $address = 'unknown';
-    if ($fw == 'koen') {
+    if ($customer == 'koen') {
         $address = 'a yacht in Antwerp';
-    } elseif ($fw == 'manuele') {
+    } elseif ($customer == 'manuele') {
         $address = 'somewhere in Belgium';
-    } elseif ($fw == 'students') {
+    } elseif ($customer == 'students') {
         $address = 'BeCode office';
     }
 
-    $toPrint .= ' pizza should be sent to ' . $fw . ". <br>The address: {$address}.";
+    $toPrint .= ' pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
     echo $toPrint;
     echo '<br>';
-    echo 'The bill is €' . $p . '.<br>';
-
-
+    echo 'The bill is €' . $price . '.<br>';
     echo "Order finished.<br><br>";
 }
 
-function total_price($p)
-{
-    return $p;
+function total_price($price){
+    return $price;
 }
 
-function test($p_type)
-{
-    echo "Test: type is {$p_type}. <br>";
-}
+//function test($pizzaType){
+//    echo "Test: type is {$pizzaType}. <br>";
+//}
 
-function calc_cts($p_type)
-{
-    $cst = 'unknown';
+function calculateCosts($pizzaType){
+    $cost = 'unknown';
 
-    if ($p_type == 'marguerita') {
-        $cst = 5;
+    if ($pizzaType == 'marguerita') {
+        $cost = 5;
     } else {
-        if ($p_type == 'golden') {
-            $cst = 100;
+        if ($pizzaType == 'golden') {
+            $cost = 100;
         }
-
-        if ($p_type == 'calzone') {
-            $cst = 10;
+        if ($pizzaType == 'calzone') {
+            $cost = 10;
         }
-
-        if ($p_type == 'hawai') {
+        if ($pizzaType == 'hawai') {
             throw new Exception('Computer says no');
         }
     }
-
-    return $cst;
+    return $cost;
 }
 
-function ordr_piz_all()
-{
+function pizzaOrderTotal(){
     $test = 0;
-    ordr_pz('calzone', 'koen');
-    ordr_pz('marguerita', 'manuele');
-
-    ordr_pz('golden', 'students');
+    pizzaOrder('calzone', 'koen');
+    pizzaOrder('marguerita', 'manuele');
+    pizzaOrder('golden', 'students');
 }
 
-function make_Allhappy($do_it)
-{
+function make_Allhappy($do_it){
     if ($do_it) {
-        ordr_piz_all();
+        pizzaOrderTotal();
     } else {
         // Should not do anything when false
     }
@@ -81,8 +68,11 @@ function make_Allhappy($do_it)
 
 make_Allhappy(true);
 
-//todo fix indentation
+//fix indentation
 //todo check clear, logical naming
+//todo delete redundant code (1)
+//todo check naming with context
 //todo check valid naming
 //todo check consistent naming (snake_case vs camelCase)
 //todo check unnecessary nesting (by adding guard clauses, inverting conditional logic, or leveraging return)
+//todo delete redundant code (2)
