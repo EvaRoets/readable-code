@@ -20,42 +20,33 @@ function takeOrder($pizzas, $customers){ //register who orders which products
         $pizzaNames[] = $pizzas[$pizzaPrice]["name"];
     }
 
+    $custAddresses = array_keys("customers");
+    $custNames = [];
+    foreach ($custAddresses as $custAddress) {
+        $custNames[] = $customers[$custAddress]["name"];
+    }
+};
 
-}
-
+function checkOutOrder(takeOrder){ //calculate total price ordered products
     $confirmationOrder = "";
+    $totalPrice = calculateCosts($pizzas);
 
-    $message = "You picked the following useless products : <br> " . implode(", ", $productNames);
-    $message .= "<br>";
-    $message .= "Your email address : " . $email;
-    $message .= "<br>";
-    $message .= "Your address : " . $street . " " . $streetNumber . ", " . $zipcode . " " . $city;
-
-
-
-    $confirmationOrder .= $pizza;
-    $price = calculateCosts($pizza);
-    echo 'Creating new order... <br>';
-
-//    $address = '';
-//    if ($customer == 'koen') {
-//        $address = 'a yacht in Antwerp';
-//    } elseif ($customer == 'manuele') {
-//        $address = 'somewhere in Belgium';
-//    } elseif ($customer == 'students') {
-//        $address = 'BeCode office';
-//    }
-
-    $confirmationOrder .= 'Pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
-    echo $toPrint;
-    echo '<br>';
-    echo 'The bill is €' . $price . '.<br>';
-    echo "Order finished.<br><br>";
-}
+    echo "Creating new order... <br>";
+    $confirmationOrder = "You ordered" .implode(", ", $pizzaNames);
+    $confirmationOrder = "The order should be sent to " .$custName. ". <br>The address:" .$custAddress. ".<br>";
+    $confirmationOrder = "The bill is €" .$totalPrice. ".<br>";
+    $confirmationOrder = "Order finished.<br><br>";
+    echo $confirmationOrder;
+};
 
 
 
-function total_price($price){
+
+
+
+
+function total_price($price)
+{
     return $price;
 }
 
@@ -81,7 +72,8 @@ function total_price($price){
 //    return $cost;
 //}
 
-function pizzaOrderTotal(){
+function pizzaOrderTotal()
+{
     takeOrder('calzone', 'koen');
     takeOrder('marguerita', 'manuele');
     takeOrder('golden', 'students');
@@ -94,11 +86,10 @@ pizzaOrderTotal();
 //fix indentation
 //check clear, logical naming
 //delete redundant code (1)
-//todo check naming with context
+//check naming with context
 //check valid naming
 //check consistent naming (snake_case vs camelCase)
 //todo check unnecessary nesting (by adding guard clauses, inverting conditional logic, or leveraging return)
-//function takeOrder(){}; //register who orders which products
 //function checkOutOrder(){}; //calculate total price ordered products
 //function sendOrder (){}; // send total order to customer
 //todo delete redundant code (2)
