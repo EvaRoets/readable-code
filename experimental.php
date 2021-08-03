@@ -1,23 +1,37 @@
 <?php
 
-// customer = for who
-function pizzaOrder($pizzaType, $customer){
-    $type = $pizzaType;
+$pizza = [
+    ["name" => "marguerita", "price" => 5],
+    ["name" => "golden", "price" => 100],
+    ["name" => "calzone", "price" => 10],
+    ["name" => "hawai", "price" => exception],
+];
+
+$customer = [
+    ["name" => koen, "address" => "a yacht in Antwerp"],
+    ["name" => manuele, "address" => "somewhere in Belgium"],
+    ["name" => students, "address" => "BeCode office"],
+];
+
+function takeOrder($pizza, $customer){ //register who orders which products
+
+
+
+    $toPrint = '';
+    $toPrint .= $pizza;
+    $price = calculateCosts($pizza);
     echo 'Creating new order... <br>';
-    $toPrint = 'A ';
-    $toPrint .= $pizzaType;
-    $price = calculateCosts($type); //delete $type because redundant
 
-    $address = 'unknown';
-    if ($customer == 'koen') {
-        $address = 'a yacht in Antwerp';
-    } elseif ($customer == 'manuele') {
-        $address = 'somewhere in Belgium';
-    } elseif ($customer == 'students') {
-        $address = 'BeCode office';
-    }
+//    $address = '';
+//    if ($customer == 'koen') {
+//        $address = 'a yacht in Antwerp';
+//    } elseif ($customer == 'manuele') {
+//        $address = 'somewhere in Belgium';
+//    } elseif ($customer == 'students') {
+//        $address = 'BeCode office';
+//    }
 
-    $toPrint .= ' pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
+    $toPrint .= 'Pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
     echo $toPrint;
     echo '<br>';
     echo 'The bill is €' . $price . '.<br>';
@@ -28,51 +42,46 @@ function total_price($price){
     return $price;
 }
 
-//function test($pizzaType){
-//    echo "Test: type is {$pizzaType}. <br>";
+//function test($pizza){
+//    echo "Test: type is {$pizza}. <br>";
 //}
 
-function calculateCosts($pizzaType){
-    $cost = 'unknown';
-
-    if ($pizzaType == 'marguerita') {
-        $cost = 5;
-    } else {
-        if ($pizzaType == 'golden') {
-            $cost = 100;
-        }
-        if ($pizzaType == 'calzone') {
-            $cost = 10;
-        }
-        if ($pizzaType == 'hawai') {
-            throw new Exception('Computer says no');
-        }
-    }
-    return $cost;
-}
+//function calculateCosts($pizza){
+//    $cost = '';
+//    if ($pizza == 'marguerita') {
+//        $cost = 5;
+//    } else {
+//        if ($pizza == 'golden') {
+//            $cost = 100;
+//        }
+//        if ($pizza == 'calzone') {
+//            $cost = 10;
+//        }
+//        if ($pizza == 'hawai') {
+//            throw new Exception('Computer says no'); // add catch/finally
+//        }
+//    }
+//    return $cost;
+//}
 
 function pizzaOrderTotal(){
-    $test = 0;
-    pizzaOrder('calzone', 'koen');
-    pizzaOrder('marguerita', 'manuele');
-    pizzaOrder('golden', 'students');
+    takeOrder('calzone', 'koen');
+    takeOrder('marguerita', 'manuele');
+    takeOrder('golden', 'students');
 }
 
-function make_Allhappy($do_it){
-    if ($do_it) {
-        pizzaOrderTotal();
-    } else {
-        // Should not do anything when false
-    }
-}
+pizzaOrderTotal();
 
-make_Allhappy(true);
+
 
 //fix indentation
-//todo check clear, logical naming
-//todo delete redundant code (1)
+//check clear, logical naming
+//delete redundant code (1)
 //todo check naming with context
-//todo check valid naming
-//todo check consistent naming (snake_case vs camelCase)
+//check valid naming
+//check consistent naming (snake_case vs camelCase)
 //todo check unnecessary nesting (by adding guard clauses, inverting conditional logic, or leveraging return)
+//function takeOrder(){}; //register who orders which products
+//function checkOutOrder(){}; //calculate total price ordered products
+//function sendOrder (){}; // send total order to customer
 //todo delete redundant code (2)
