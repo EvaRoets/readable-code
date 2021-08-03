@@ -1,24 +1,39 @@
 <?php
 
-$pizza = [
+$pizzas = [
     ["name" => "marguerita", "price" => 5],
     ["name" => "golden", "price" => 100],
     ["name" => "calzone", "price" => 10],
     ["name" => "hawai", "price" => exception],
 ];
 
-$customer = [
+$customers = [
     ["name" => koen, "address" => "a yacht in Antwerp"],
     ["name" => manuele, "address" => "somewhere in Belgium"],
     ["name" => students, "address" => "BeCode office"],
 ];
 
-function takeOrder($pizza, $customer){ //register who orders which products
+function takeOrder($pizzas, $customers){ //register who orders which products
+    $pizzaPrices = array_keys("pizzas");
+    $pizzaNames = [];
+    foreach ($pizzaPrices as $pizzaPrice) {
+        $pizzaNames[] = $pizzas[$pizzaPrice]["name"];
+    }
+
+
+}
+
+    $confirmationOrder = "";
+
+    $message = "You picked the following useless products : <br> " . implode(", ", $productNames);
+    $message .= "<br>";
+    $message .= "Your email address : " . $email;
+    $message .= "<br>";
+    $message .= "Your address : " . $street . " " . $streetNumber . ", " . $zipcode . " " . $city;
 
 
 
-    $toPrint = '';
-    $toPrint .= $pizza;
+    $confirmationOrder .= $pizza;
     $price = calculateCosts($pizza);
     echo 'Creating new order... <br>';
 
@@ -31,12 +46,14 @@ function takeOrder($pizza, $customer){ //register who orders which products
 //        $address = 'BeCode office';
 //    }
 
-    $toPrint .= 'Pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
+    $confirmationOrder .= 'Pizza should be sent to ' . $customer . ". <br>The address: {$address}.";
     echo $toPrint;
     echo '<br>';
     echo 'The bill is €' . $price . '.<br>';
     echo "Order finished.<br><br>";
 }
+
+
 
 function total_price($price){
     return $price;
