@@ -1,35 +1,36 @@
 <?php
 
-$pizzas = [
-    ["name" => "marguerita", "price" => 5],
-    ["name" => "golden", "price" => 100],
-    ["name" => "calzone", "price" => 10],
+$pizzaNames = [
+    ["pizzaName" => "marguerita", "price" => 5],
+    ["pizzaName" => "golden", "price" => 100],
+    ["pizzaName" => "calzone", "price" => 10],
 ];
 
 $customers = [
-    ["name" => koen, "address" => "a yacht in Antwerp"],
-    ["name" => manuele, "address" => "somewhere in Belgium"],
-    ["name" => students, "address" => "BeCode office"],
+    ["customer" => koen, "address" => "a yacht in Antwerp"],
+    ["customer" => manuele, "address" => "somewhere in Belgium"],
+    ["customer" => students, "address" => "BeCode office"],
 ];
 
-function takeOrder($pizzas, $customers)
+function takeOrder($pizzaName, $customer)
 { //register who orders which products
     $pizzaPrices = array_keys("pizzas");
-    $pizzaNames = [];
+    $pizzas = [];
     foreach ($pizzaPrices as $pizzaPrice) {
-        $pizzaNames[] = $pizzas[$pizzaPrice]["name"];
+        $pizzas[] = $pizzaNames[$pizzaPrice]["pizzaName"];
     }
 
     if (!empty($pizzaNames[$pizza])) {
         $pizzaName = $pizzaNames[$pizza];
+
     } else {
         $pizzaName = "unknown";
     }
 }
 
-function checkOutOrder(takeOrder){ //calculate total price ordered products
+function checkOutOrder($price){ //calculate total price ordered products
     $confirmationOrder = "";
-    $totalPrice = calculateCosts($pizzas);
+    $totalPrice = calculatePrice($pizzaNames);
 
     echo "Creating new order... <br>";
     $confirmationOrder = "You ordered" . implode(", ", $pizzaNames);
@@ -54,32 +55,10 @@ function sendOrder()
     }
 }
 
-function total_price($price)
+function calculatePrice($price)
 {
-    return $price;
 }
 
-//function test($pizza){
-//    echo "Test: type is {$pizza}. <br>";
-//}
-
-//function calculateCosts($pizza){
-//    $cost = '';
-//    if ($pizza == 'marguerita') {
-//        $cost = 5;
-//    } else {
-//        if ($pizza == 'golden') {
-//            $cost = 100;
-//        }
-//        if ($pizza == 'calzone') {
-//            $cost = 10;
-//        }
-//        if ($pizza == 'hawai') {
-//            throw new Exception('Computer says no'); // add catch/finally
-//        }
-//    }
-//    return $cost;
-//}
 
 function pizzaOrderTotal()
 {
@@ -89,16 +68,3 @@ function pizzaOrderTotal()
 }
 
 pizzaOrderTotal();
-
-
-
-//fix indentation
-//check clear, logical naming
-//delete redundant code (1)
-//check naming with context
-//check valid naming
-//check consistent naming (snake_case vs camelCase)
-//todo check unnecessary nesting (by adding guard clauses, inverting conditional logic, or leveraging return)
-//function checkOutOrder(){}; //calculate total price ordered products
-//function sendOrder (){}; // send total order to customer
-//todo delete redundant code (2)
