@@ -1,6 +1,6 @@
 # Readable code 🔍
 
-Watch the result of this project >> [here]()
+~Watch the result of this project >> [here]()~
 
 ## 🎯 Objectives
 - To be able to make decisions about when and how to refactor less readable code.
